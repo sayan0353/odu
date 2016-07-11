@@ -1,0 +1,68 @@
+import random
+
+x=y=1
+print "\n----START----"
+print (x,y)
+count1=0
+count2=0
+m=1
+cond=True
+
+a=[[0 for x in range (8)]for y in range (8)]
+for i in range (8):
+    print a[i]
+print"\n"
+x=y=1
+while cond:
+    
+    dice=random.randint(1,6)
+
+    print "Dice Value %d =%d"%(m,dice)
+    m=m+1
+    if (x%2 != 0) :    
+        if ((y+dice)<=8):
+            y=y+dice
+            print x,y 
+        else:
+            s_left=8-y
+            y=y+s_left
+            d_left=dice-s_left-1
+            x=x+1
+            y=y-d_left
+            print x,y 
+    elif(x==8):
+        if ((y-dice)>0):
+            y=y-dice
+            print x,y 
+        else:
+            s_left=y-1
+            y=y-s_left
+            d_left=dice-s_left-1
+            x=1
+            y=y+d_left
+            print x,y             
+    else:
+        if ((y-dice)>0):
+            y=y-dice
+            print x,y 
+        else:
+            s_left=y-1
+            y=y-s_left
+            d_left=dice-s_left-1
+            x=x+1
+            y=y+d_left
+            print x,y 
+            a[x][y]=1
+    
+    for i in range(0, 8):
+        for j in range(0, 8):
+             if(a[i][j]==1):
+                  count1=count1+1
+             elif(a[j][i]==1):
+                  count2=count2+1
+    
+    if(count1==8 or count2==8):
+        cond=False
+        print"BINGO"
+        break
+
